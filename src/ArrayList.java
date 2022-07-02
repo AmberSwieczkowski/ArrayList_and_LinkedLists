@@ -101,7 +101,6 @@ public class ArrayList<T> {
      * @return the size of the list
      */
     public int size() {
-        // DO NOT MODIFY THIS METHOD!
         return size;
     }
 
@@ -114,7 +113,6 @@ public class ArrayList<T> {
         backingArray = doubledBackingArray;
     }
 
-    // Delete everything below this
     public void print() {
         for (int i = 0; i < backingArray.length; i++) {
             System.out.println(backingArray[i]);
