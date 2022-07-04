@@ -74,27 +74,46 @@ public class LinkedList {
     }
 
     // contains
-public Node contains(int value) {
+public boolean contains(int value) {
     if (isEmpty()) {
         System.out.println("List is empty");
-        return null;
+        return false;
     } else {
         Node current = first;
         int index = 0;
         while (current.next != null) {
             if (current.value == value) {
                 System.out.println("Found " + value + " at node " + index);
-                return current;
+                return true;
             }
             current = current.next;
             index++;
         }
         System.out.println("List does not contain " + value);
-        return null;
+        return false;
     }
 }
 
     // indexOf
+    public int indexOf(int value) {
+        if (isEmpty()) {
+            System.out.println("List is empty");
+            return -1;
+        } else {
+            Node current = first;
+            int index = 0;
+            while (current.next != null) {
+                if (current.value == value) {
+                    System.out.println("Found " + value + " at node " + index);
+                    return index;
+                }
+                current = current.next;
+                index++;
+            }
+            System.out.println("List does not contain " + value);
+            return -1;
+        }
+    }
 
     public void print() {
         if (isEmpty()) {
