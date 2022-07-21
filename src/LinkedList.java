@@ -1,3 +1,5 @@
+import java.util.NoSuchElementException;
+
 public class LinkedList {
     private class Node {
         private int value;
@@ -22,7 +24,7 @@ public class LinkedList {
             node.next = first;
             first = node;
         }
-        System.out.println("Added to Head: " + first.value);
+        // System.out.println("Added to Head: " + first.value);
     }
 
     // addLast
@@ -36,19 +38,20 @@ public class LinkedList {
             last.next = node;
             last = node;
         }
-        System.out.println("Added to Tail: " + last.value);
+        // System.out.println("Added to Tail: " + last.value);
     }
 
     // deleteFirst
     public Node deleteFirst() {
         if (isEmpty()) {
             System.out.println("Cannot delete when list is empty");
-            return null;
+            throw new NoSuchElementException();
         } else {
-            Node oldFirst = first;
-            first = first.next;
-            System.out.println("Deleted from Head: " + oldFirst.value);
-            return oldFirst;
+            Node second = first.next;
+            first.next = null;
+            first = second;
+            // System.out.println("Deleted from Head: " + second.value);
+            return second;
         }
     }
 
@@ -56,7 +59,7 @@ public class LinkedList {
     public Node deleteLast() {
         if (isEmpty()) {
             System.out.println("Cannot delete when list is empty");
-            return null;
+            throw new NoSuchElementException();
         } else if (first.next == null) {
             first = null;
             return null;
@@ -68,7 +71,7 @@ public class LinkedList {
             Node oldLast = current.next;
             last = current;
             last.next = null;
-            System.out.println("Deleted from Tail: " + oldLast.value);
+            // System.out.println("Deleted from Tail: " + oldLast.value);
             return oldLast;
         }
     }
@@ -102,7 +105,7 @@ public boolean contains(int value) {
         } else {
             Node current = first;
             int index = 0;
-            while (current.next != null) {
+            while (current != null) {
                 if (current.value == value) {
                     System.out.println("Found " + value + " at node " + index);
                     return index;
